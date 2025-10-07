@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Task</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    form { display: grid; gap: 0.75rem; max-width: 420px; }
+    label { font-weight: 600; }
+    input, select { padding: 0.5rem; font-size: 1rem; }
+    button { padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer; }
+    .hint { color: #666; font-size: 0.9rem; }
+  </style>
+  <script>
+    async function submitForm(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new URLSearchParams(new FormData(form));
+      const res = await fetch('/tasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+      });
+      if (res.status === 204) {
+        alert('Task created');
+        form.reset();
+      } else {
+        alert('Failed to create task (' + res.status + ')');
+      }
+    }
+  </script>
+  </head>
+  <body>
+    <h1>Create a new task</h1>
+    <form onsubmit="submitForm(event)">
+      <div>
+        <label for="name">Name</label><br />
+        <input id="name" name="name" required />
+      </div>
+      <div>
+        <label for="description">Description</label><br />
+        <input id="description" name="description" required />
+      </div>
+      <div>
+        <label for="priority">Priority</label><br />
+        <select id="priority" name="priority" required>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+          <option value="Vital">Vital</option>
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+      <p class="hint">After submitting, open <a href="/tasks" target="_blank">/tasks</a> to see the table.</p>
+    </form>
+  </body>
+  </html>
+
+
