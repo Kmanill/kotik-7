@@ -44,6 +44,6 @@ Place screenshots of each step in `docs/screenshots/` and link them below:
 
 ## GitHub
 
-Repository URL: <ADD_YOUR_GITHUB_REPO_URL_HERE>
+Repository URL: https://github.com/Kmanill/kotik-7
 
 
