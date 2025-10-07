@@ -1,39 +1,49 @@
-# ktor-sample-app
+# Ktor Task Manager (Requests and Responses)
 
-This project was created using the [Ktor Project Generator](https://start.ktor.io).
+Implements the tutorial tasks from Ktor 3.3.0: handling GET/POST, extracting parameters, error handling, and unit tests.
 
-Here are some useful links to get you started:
+- Tutorial: [Ktor Requests and Responses](https://ktor.io/docs/server-requests-and-responses.html)
 
-- [Ktor Documentation](https://ktor.io/docs/home.html)
-- [Ktor GitHub page](https://github.com/ktorio/ktor)
-- The [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). You'll need to [request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) to join.
+## Endpoints
 
-## Features
+- `GET /tasks` — HTML table of all tasks
+- `GET /tasks/byPriority/{priority}` — filter tasks by priority (`Low|Medium|High|Vital`)
+- `GET /tasks/byName/{taskName}` — find task by name
+- `POST /tasks` — create a new task (form urlencoded: `name`, `description`, `priority`)
+- Static UI: `GET /task-ui/task-form.html`
 
-Here's a list of features included in this project:
+## Run locally
 
-| Name                                               | Description                                                 |
-| ----------------------------------------------------|------------------------------------------------------------- |
-| [Routing](https://start.ktor.io/p/routing-default) | Allows to define structured routes and associated handlers. |
+PowerShell on Windows:
 
-## Building & Running
-
-To build or run the project, use one of the following tasks:
-
-| Task                                    | Description                                                          |
-| -----------------------------------------|---------------------------------------------------------------------- |
-| `./gradlew test`                        | Run the tests                                                        |
-| `./gradlew build`                       | Build everything                                                     |
-| `./gradlew buildFatJar`                 | Build an executable JAR of the server with all dependencies included |
-| `./gradlew buildImage`                  | Build the docker image to use with the fat JAR                       |
-| `./gradlew publishImageToLocalRegistry` | Publish the docker image locally                                     |
-| `./gradlew run`                         | Run the server                                                       |
-| `./gradlew runDocker`                   | Run using the local docker image                                     |
-
-If the server starts successfully, you'll see the following output:
-
+```bash
+./gradlew.bat run
 ```
-2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
-2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
+
+Then open:
+
+- http://localhost:8080/tasks
+- http://localhost:8080/tasks/byPriority/Medium
+- http://localhost:8080/task-ui/task-form.html
+
+## Tests
+
+```bash
+./gradlew.bat test
 ```
+
+## Screenshots
+
+Place screenshots of each step in `docs/screenshots/` and link them below:
+
+- `docs/screenshots/01-static-tasks.png`
+- `docs/screenshots/02-all-tasks.png`
+- `docs/screenshots/03-by-priority.png`
+- `docs/screenshots/04-form.png`
+- `docs/screenshots/05-post-success.png`
+
+## GitHub
+
+Repository URL: <ADD_YOUR_GITHUB_REPO_URL_HERE>
+
 
